@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Erstgespräch buchen mit ARKYN — kostenlos, 30 Minuten, kein Druck.">
+    <title>Gespräch buchen — ARKYN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: #111111;
+            color: #EBEBE6;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+        :root {
+            --bg:        #2B2B2B;
+            --bg-darker: #111111;
+            --bg-card:   #1e1e1e;
+            --text:      #EBEBE6;
+            --text-muted:#9A9A94;
+            --text-dim:  #6B6B66;
+            --gold:      #E8B84B;
+            --gold-dim:  rgba(232,184,75,0.12);
+            --gold-bdr:  rgba(232,184,75,0.35);
+            --border:    rgba(235,235,230,0.08);
+            --ease:      cubic-bezier(0.16,1,0.3,1);
+        }
+        a { color: inherit; text-decoration: none; }
+        h1,h2,h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; line-height: 1.05; }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            height: 72px; display: flex; align-items: center;
+            background: rgba(17,17,17,.95);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+        }
+        nav .container { max-width: none; width: 100%; padding: 0 56px; }
+        .nav-inner { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; width: 100%; }
+        .nav-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 26px; font-weight: 800; letter-spacing: .08em; color: var(--gold); justify-self: start; }
+        .nav-logo small { font-size: 13px; color: var(--text-dim); font-weight: 400; margin-right: 3px; }
+        .nav-back { justify-self: end; font-size: 13px; color: var(--text-muted); transition: color .2s; display: flex; align-items: center; gap: 6px; }
+        .nav-back:hover { color: var(--gold); }
+
+        /* PAGE */
+        .page {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1.6fr;
+            padding-top: 72px;
+        }
+
+        /* LEFT INFO PANEL */
+        .info-panel {
+            background: #0d0d0d;
+            border-right: 1px solid var(--border);
+            padding: 80px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .info-label {
+            font-size: 11px; font-weight: 600; letter-spacing: .15em;
+            text-transform: uppercase; color: var(--gold); margin-bottom: 20px; display: block;
+        }
+        .info-h1 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(44px, 5vw, 64px);
+            font-weight: 800; color: var(--text); margin-bottom: 20px;
+        }
+        .info-h1 em { font-style: italic; color: var(--gold); }
+        .info-sub { font-size: 16px; color: var(--text-muted); line-height: 1.8; max-width: 380px; margin-bottom: 56px; }
+        .info-items { display: flex; flex-direction: column; gap: 28px; }
+        .info-item-label { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
+        .info-item-val { font-size: 15px; color: var(--text); }
+        .info-item-val a { color: var(--gold); }
+        .info-divider { width: 32px; height: 1px; background: var(--gold); opacity: .4; margin: 8px 0; }
+
+        /* RIGHT FORM PANEL */
+        .form-panel {
+            padding: 80px 72px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .form-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 28px; font-weight: 700; color: var(--text); margin-bottom: 40px;
+        }
+        .form { display: flex; flex-direction: column; gap: 20px; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .form-g { display: flex; flex-direction: column; gap: 8px; }
+        .form-g label { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); }
+        .form-g input,
+        .form-g select,
+        .form-g textarea {
+            background: #1a1a1a; border: 1px solid var(--border);
+            color: var(--text); font-family: 'Inter', sans-serif; font-size: 15px;
+            padding: 14px 18px; outline: none; width: 100%;
+            appearance: none; -webkit-appearance: none;
+            transition: border-color .2s;
+        }
+        .form-g input:focus,
+        .form-g select:focus,
+        .form-g textarea:focus { border-color: var(--gold-bdr); }
+        .form-g input::placeholder,
+        .form-g textarea::placeholder { color: var(--text-dim); }
+        .form-g select {
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6B66' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: right 18px center; padding-right: 40px;
+        }
+        .form-g select option { background: #1a1a1a; }
+        .form-g textarea { resize: vertical; min-height: 140px; }
+        .btn-submit {
+            background: var(--gold); color: #111111;
+            font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600;
+            padding: 17px 44px; border: none; cursor: pointer; letter-spacing: .05em;
+            align-self: flex-start;
+            transition: background .2s, transform .15s, box-shadow .2s;
+        }
+        .btn-submit:hover { background: #f0c55c; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,184,75,.25); }
+
+        /* Success state */
+        .form-success {
+            display: none; text-align: center; padding: 60px 40px;
+        }
+        .form-success.show { display: block; }
+        .success-icon { font-size: 48px; margin-bottom: 20px; }
+        .success-title { font-family: 'Barlow Condensed', sans-serif; font-size: 36px; font-weight: 700; color: var(--text); margin-bottom: 12px; }
+        .success-sub { font-size: 16px; color: var(--text-muted); }
+
+        /* FOOTER */
+        .page-footer {
+            border-top: 1px solid var(--border); background: #0d0d0d;
+            padding: 24px 56px; display: flex; align-items: center; justify-content: space-between;
+        }
+        .page-footer span { font-size: 12px; color: var(--text-dim); }
+        .page-footer-links { display: flex; gap: 24px; }
+        .page-footer-links a { font-size: 12px; color: var(--text-dim); transition: color .2s; }
+        .page-footer-links a:hover { color: var(--gold); }
+
+        @media (max-width: 900px) {
+            .page { grid-template-columns: 1fr; }
+            .info-panel { padding: 60px 40px; border-right: none; border-bottom: 1px solid var(--border); }
+            .form-panel { padding: 60px 40px; }
+            nav .container { padding: 0 24px; }
+        }
+        @media (max-width: 600px) {
+            .form-row { grid-template-columns: 1fr; }
+            .info-panel { padding: 40px 24px; }
+            .form-panel { padding: 40px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="container">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo"><small>24</small>ARKYN</a>
+            <div></div>
+            <a href="index.html" class="nav-back">&#8592; Zurück zur Website</a>
+        </div>
+    </div>
+</nav>
+
+<main class="page">
+    <!-- LEFT: Info -->
+    <div class="info-panel">
+        <span class="info-label">Erstgespräch buchen</span>
+        <h1 class="info-h1">Lass uns<br><em>reden.</em></h1>
+        <p class="info-sub">Kein Pitch, kein Druck. Wir schauen gemeinsam ob es passt und was wir für dich tun können.</p>
+        <div class="info-divider"></div>
+        <div class="info-items">
+            <div>
+                <div class="info-item-label">Dauer</div>
+                <div class="info-item-val">30 Minuten &middot; kostenlos</div>
+            </div>
+            <div>
+                <div class="info-item-label">Format</div>
+                <div class="info-item-val">Video-Call oder Telefon</div>
+            </div>
+            <div>
+                <div class="info-item-label">Instagram</div>
+                <div class="info-item-val"><a href="https://instagram.com/arkynenterprise" target="_blank" rel="noopener">@arkynenterprise</a></div>
+            </div>
+            <div>
+                <div class="info-item-label">Standort</div>
+                <div class="info-item-val">Berlin, Deutschland</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RIGHT: Form -->
+    <div class="form-panel">
+        <div class="form-title">Schreib uns kurz, was du brauchst.</div>
+
+        <!-- Netlify Forms: data-netlify="true" aktiviert das Formular auf Netlify -->
+        <form class="form" id="bookingForm" name="erstgespraech" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="erstgespraech">
+            <p style="display:none;"><label>Nicht ausfüllen: <input name="bot-field"></label></p>
+
+            <div class="form-row">
+                <div class="form-g">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Dein Name" required>
+                </div>
+                <div class="form-g">
+                    <label for="email">E-Mail</label>
+                    <input type="email" id="email" name="email" placeholder="deine@email.de" required>
+                </div>
+            </div>
+            <div class="form-g">
+                <label for="service">Was interessiert dich?</label>
+                <select id="service" name="service" required>
+                    <option value="" disabled selected>Auswählen&hellip;</option>
+                    <option value="logo">Logo Design</option>
+                    <option value="website">Website-Entwicklung</option>
+                    <option value="branding">Brand Identity</option>
+                    <option value="komplett">Komplett-Paket</option>
+                    <option value="sonstiges">Sonstiges</option>
+                </select>
+            </div>
+            <div class="form-g">
+                <label for="budget">Budget (optional)</label>
+                <select id="budget" name="budget">
+                    <option value="" disabled selected>Ungefähres Budget&hellip;</option>
+                    <option value="unter-500">Unter 500 €</option>
+                    <option value="500-1500">500 € bis 1.500 €</option>
+                    <option value="1500-3000">1.500 € bis 3.000 €</option>
+                    <option value="ueber-3000">Über 3.000 €</option>
+                </select>
+            </div>
+            <div class="form-g">
+                <label for="msg">Dein Projekt</label>
+                <textarea id="msg" name="msg" placeholder="Erzähl uns kurz was du machst und was du dir vorstellst&hellip;" required></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Anfrage senden</button>
+        </form>
+
+        <div class="form-success" id="formSuccess">
+            <div class="success-icon">&#10003;</div>
+            <div class="success-title">Nachricht erhalten.</div>
+            <p class="success-sub">Wir melden uns innerhalb von 24 Stunden bei dir.</p>
+        </div>
+    </div>
+</main>
+
+<footer class="page-footer">
+    <span>&copy; 2026 ARKYN. Alle Rechte vorbehalten.</span>
+    <div class="page-footer-links">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+    </div>
+</footer>
+
+<script>
+// Lokale Vorschau: Formular-Erfolg simulieren (auf Netlify übernimmt Netlify das Redirect)
+document.getElementById('bookingForm').addEventListener('submit', function(e) {
+    // Auf Netlify wird das Formular nativ verarbeitet — kein JS nötig
+    // Lokal zeigen wir einen Success-State
+    if (window.location.hostname === '' || window.location.hostname === '127.0.0.1') {
+        e.preventDefault();
+        this.style.display = 'none';
+        document.querySelector('.form-title').style.display = 'none';
+        document.getElementById('formSuccess').classList.add('show');
+    }
+});
+</script>
+</body>
+</html>

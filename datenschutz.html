@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Datenschutz — ARKYN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background: #111111; color: #EBEBE6;
+            font-family: 'Inter', sans-serif; line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        :root {
+            --gold: #E8B84B;
+            --text-muted: #9A9A94;
+            --text-dim: #6B6B66;
+            --border: rgba(235,235,230,0.08);
+        }
+        a { color: var(--gold); text-decoration: none; }
+        a:hover { opacity: .8; }
+
+        nav {
+            position: sticky; top: 0; z-index: 10;
+            background: rgba(17,17,17,.96); backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 56px; height: 72px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 24px; font-weight: 800; letter-spacing: .08em; color: var(--gold); }
+        .nav-logo small { font-size: 12px; color: var(--text-dim); font-weight: 400; margin-right: 2px; }
+        .nav-back { font-size: 13px; color: var(--text-muted); transition: color .2s; }
+        .nav-back:hover { color: var(--gold); }
+
+        main { max-width: 760px; margin: 0 auto; padding: 80px 40px 120px; }
+        .page-label { font-size: 11px; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; display: block; }
+        h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 52px; font-weight: 800; margin-bottom: 16px; }
+        .last-updated { font-size: 13px; color: var(--text-dim); margin-bottom: 56px; }
+        h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 700; color: #EBEBE6; margin: 44px 0 12px; }
+        h3 { font-size: 15px; font-weight: 600; color: #EBEBE6; margin: 24px 0 8px; }
+        p { font-size: 15px; color: var(--text-muted); margin-bottom: 12px; }
+        ul { margin: 12px 0 12px 0; padding: 0; list-style: none; }
+        ul li { font-size: 15px; color: var(--text-muted); padding: 4px 0 4px 20px; position: relative; }
+        ul li::before { content: '→'; position: absolute; left: 0; color: var(--gold); font-size: 12px; }
+        .divider { width: 40px; height: 1px; background: var(--gold); opacity: .4; margin: 48px 0; }
+        .highlight-box {
+            border: 1px solid rgba(232,184,75,.2); background: rgba(232,184,75,.04);
+            padding: 20px 24px; margin: 20px 0;
+        }
+        .highlight-box p { margin: 0; }
+
+        footer { border-top: 1px solid var(--border); padding: 28px 56px; display: flex; justify-content: space-between; align-items: center; }
+        footer span { font-size: 12px; color: var(--text-dim); }
+        .foot-links { display: flex; gap: 24px; }
+        .foot-links a { font-size: 12px; color: var(--text-dim); transition: color .2s; }
+        .foot-links a:hover { color: var(--gold); }
+
+        @media (max-width: 600px) {
+            nav { padding: 0 24px; }
+            main { padding: 60px 24px 80px; }
+            h1 { font-size: 40px; }
+            footer { flex-direction: column; gap: 12px; padding: 24px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="nav-logo"><small>24</small>ARKYN</a>
+    <a href="index.html" class="nav-back">&#8592; Zurück</a>
+</nav>
+
+<main>
+    <span class="page-label">Rechtliches</span>
+    <h1>Datenschutzerklärung</h1>
+    <p class="last-updated">Stand: Januar 2026</p>
+
+    <div class="highlight-box">
+        <p>Der Schutz deiner persönlichen Daten ist uns wichtig. Wir erheben und verarbeiten deine Daten ausschließlich im Rahmen der geltenden Datenschutzgesetze, insbesondere der DSGVO.</p>
+    </div>
+
+    <h2>1. Verantwortlicher</h2>
+    <p>
+        Arian Rahimy Pour (ARKYN)<br>
+        [Straße Hausnummer], [PLZ] Berlin<br>
+        E-Mail: <a href="mailto:info@arkynenterprise.com">info@arkynenterprise.com</a>
+    </p>
+
+    <div class="divider"></div>
+
+    <h2>2. Hosting</h2>
+    <p>Diese Website wird gehostet von:</p>
+    <p>
+        <strong style="color:#EBEBE6;">Netlify, Inc.</strong><br>
+        44 Montgomery Street, Suite 300<br>
+        San Francisco, CA 94104, USA
+    </p>
+    <p>Netlify ist Empfänger deiner personenbezogenen Daten und als Auftragsverarbeiter für uns tätig. Die Datenübertragung in die USA erfolgt auf Basis der EU-Standardvertragsklauseln. Weitere Informationen findest du in der <a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener">Datenschutzerklärung von Netlify</a>.</p>
+    <p>Beim Besuch der Website werden automatisch folgende Daten erhoben und in Server-Logs gespeichert:</p>
+    <ul>
+        <li>IP-Adresse (anonymisiert)</li>
+        <li>Browsertyp und -version</li>
+        <li>Aufgerufene Seite und Uhrzeit des Zugriffs</li>
+        <li>Referrer-URL</li>
+    </ul>
+    <p>Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der sicheren und stabilen Bereitstellung der Website). Speicherdauer: 30 Tage.</p>
+
+    <div class="divider"></div>
+
+    <h2>3. Kontaktformular</h2>
+    <p>Wenn du unser Kontaktformular nutzt, werden folgende Daten erhoben:</p>
+    <ul>
+        <li>Name</li>
+        <li>E-Mail-Adresse</li>
+        <li>Angaben zu deinem Projektanliegen</li>
+        <li>Optionale Budgetangabe</li>
+    </ul>
+    <p>Diese Daten werden über Netlify Forms verarbeitet und per E-Mail an uns weitergeleitet. Die Daten werden ausschließlich zur Bearbeitung deiner Anfrage und zur Kontaktaufnahme mit dir verwendet.</p>
+    <p>Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung) bzw. Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse). Speicherdauer: Formulareinträge werden bei Netlify für 30 Tage gespeichert. E-Mails werden bis zur abschließenden Bearbeitung aufbewahrt.</p>
+
+    <div class="divider"></div>
+
+    <h2>4. Schriftarten (Google Fonts)</h2>
+    <p>Diese Website lädt Schriftarten von Google Fonts (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland). Dabei wird deine IP-Adresse an Google übertragen. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.</p>
+    <p>Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Datenschutzerklärung</a>.</p>
+
+    <div class="divider"></div>
+
+    <h2>5. Cookies</h2>
+    <p>Diese Website verwendet keine Tracking-Cookies und kein Analytics. Es werden ausschließlich technisch notwendige Daten verarbeitet.</p>
+
+    <div class="divider"></div>
+
+    <h2>6. Deine Rechte</h2>
+    <p>Du hast gegenüber uns folgende Rechte hinsichtlich der dich betreffenden personenbezogenen Daten:</p>
+    <ul>
+        <li>Recht auf Auskunft (Art. 15 DSGVO)</li>
+        <li>Recht auf Berichtigung (Art. 16 DSGVO)</li>
+        <li>Recht auf Löschung (Art. 17 DSGVO)</li>
+        <li>Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
+        <li>Recht auf Datenübertragbarkeit (Art. 20 DSGVO)</li>
+        <li>Recht auf Widerspruch gegen die Verarbeitung (Art. 21 DSGVO)</li>
+    </ul>
+    <p>Zur Geltendmachung deiner Rechte wende dich an: <a href="mailto:info@arkynenterprise.com">info@arkynenterprise.com</a></p>
+    <p>Du hast zudem das Recht, dich bei einer Datenschutz-Aufsichtsbehörde zu beschweren. Die zuständige Behörde für Berlin ist der <a href="https://www.datenschutz-berlin.de" target="_blank" rel="noopener">Berliner Beauftragte für Datenschutz und Informationsfreiheit</a>.</p>
+
+    <div class="divider"></div>
+
+    <h2>7. Änderungen dieser Datenschutzerklärung</h2>
+    <p>Wir behalten uns vor, diese Datenschutzerklärung bei Bedarf zu aktualisieren, um sie an geänderte Rechtslagen oder bei Änderungen des Dienstes anzupassen. Die jeweils aktuelle Version findest du stets auf dieser Seite.</p>
+</main>
+
+<footer>
+    <span>&copy; 2026 ARKYN</span>
+    <div class="foot-links">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+    </div>
+</footer>
+
+</body>
+</html>
