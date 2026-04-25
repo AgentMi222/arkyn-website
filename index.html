@@ -492,6 +492,8 @@
         @media (max-width:480px) {
             .hero-ctas { flex-direction:column; }
             .btn-gold, .btn-out { text-align:center; }
+            .hero-inner { padding-bottom: 120px; }
+            .scroll-ind { bottom: 16px; }
         }
     </style>
 </head>
@@ -542,7 +544,7 @@
                 die im Kopf <em>bleiben.</em>
             </h1>
             <p class="hero-p fu">
-                Logo. Website. Branding. Fertig&nbsp;&mdash; nicht irgendwann, sondern jetzt.
+                Logo. Website. Branding.<br>Fertig. Nicht irgendwann, sondern jetzt.
             </p>
             <div class="hero-ctas fu">
                 <a href="kontakt.html" class="btn-gold">Gespräch buchen</a>
@@ -808,10 +810,18 @@
         }, 150);
     });
 
-    // Mobile: random directional sweep — 6 directions, random order, variable speed & density
+    // Mobile: random directional sweep — one sweep at a time, clears before starting next
     if (window.matchMedia('(pointer: coarse)').matches) {
         const cells = Array.from(wrap.querySelectorAll('.box-cell'));
         const DIRS = ['ltr', 'rtl', 'ttb', 'btt', 'diag-dr', 'diag-dl'];
+
+        function clearAll() {
+            cells.forEach(c => {
+                clearTimeout(c._ft);
+                c.style.transition = 'background-color 0.6s ease';
+                c.style.backgroundColor = 'transparent';
+            });
+        }
 
         function lightCell(row, col) {
             if (col < 0 || col >= COLS || row < 0 || row >= ROWS) return;
@@ -822,19 +832,19 @@
             cell.style.backgroundColor = color;
             clearTimeout(cell._ft);
             cell._ft = setTimeout(() => {
-                cell.style.transition = 'background-color 2.2s ease';
+                cell.style.transition = 'background-color 1.8s ease';
                 cell.style.backgroundColor = 'transparent';
-            }, 160);
+            }, 180);
         }
 
         function runSweep() {
-            const dir     = DIRS[Math.floor(Math.random() * DIRS.length)];
-            const tickMs  = 60 + Math.floor(Math.random() * 35);  // 60–95 ms per tick
-            const skip    = 8  + Math.floor(Math.random() * 5);   // sample every 8–12 cells
+            clearAll();
+            const dir    = DIRS[Math.floor(Math.random() * DIRS.length)];
+            const tickMs = 90 + Math.floor(Math.random() * 50);   // 90–140 ms — slower
+            const skip   = 11 + Math.floor(Math.random() * 5);    // every 11–15 cells — sparser
 
-            // Normalize all directions to ~90 effective ticks so sweeps feel comparable
-            const advance = dir === 'ttb' || dir === 'btt' ? 2 :
-                            dir === 'diag-dr' || dir === 'diag-dl' ? 3 : 1;
+            const advance  = dir === 'ttb' || dir === 'btt' ? 2 :
+                             dir === 'diag-dr' || dir === 'diag-dl' ? 3 : 1;
             const maxSteps = dir === 'ltr' || dir === 'rtl' ? COLS :
                              dir === 'ttb' || dir === 'btt' ? Math.ceil(ROWS / 2) :
                              Math.ceil((ROWS + COLS) / 3);
@@ -843,8 +853,8 @@
             const iv = setInterval(() => {
                 if (step >= maxSteps) {
                     clearInterval(iv);
-                    // Pause 0.8–2.2 s then pick a new random direction
-                    setTimeout(runSweep, 800 + Math.floor(Math.random() * 1400));
+                    // Wait for fade-out to finish, then start next sweep
+                    setTimeout(runSweep, 2400 + Math.floor(Math.random() * 1600));
                     return;
                 }
                 const s = step * advance;
