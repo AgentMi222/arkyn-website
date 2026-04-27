@@ -1,0 +1,24 @@
+[build]
+  publish = "/"
+  command = "echo 'Static site — no build needed'"
+
+[[redirects]]
+  from = "/kontakt"
+  to = "/kontakt.html"
+  status = 200
+
+[[redirects]]
+  from = "/impressum"
+  to = "/impressum.html"
+  status = 200
+
+[[redirects]]
+  from = "/datenschutz"
+  to = "/datenschutz.html"
+  status = 200
+
+[context.production]
+  command = "echo 'Production'"
+
+[context.deploy-preview]
+  command = "echo 'Deploy preview'"
