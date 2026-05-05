@@ -50,7 +50,7 @@
         .nav-back { justify-self: end; font-size: 13px; color: var(--text-muted); transition: color .2s; display: flex; align-items: center; gap: 6px; }
         .nav-back:hover { color: var(--gold); }
 
-        /* PAGE */
+        /* PAGE LAYOUT */
         .page {
             min-height: 100vh;
             display: grid;
@@ -81,21 +81,64 @@
         .info-items { display: flex; flex-direction: column; gap: 28px; }
         .info-item-label { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
         .info-item-val { font-size: 15px; color: var(--text); }
-        .info-item-val a { color: var(--gold); }
+        .info-item-val a { color: var(--gold); transition: opacity .2s; }
+        .info-item-val a:hover { opacity: .75; }
         .info-divider { width: 32px; height: 1px; background: var(--gold); opacity: .4; margin: 8px 0; }
 
-        /* RIGHT FORM PANEL */
-        .form-panel {
-            padding: 80px 72px;
+        /* RIGHT: CAL PANEL */
+        .cal-panel {
+            padding: 0;
             display: flex;
             flex-direction: column;
-            justify-content: center;
         }
-        .form-title {
+        .cal-header {
+            padding: 48px 72px 32px;
+            border-bottom: 1px solid var(--border);
+        }
+        .cal-title {
             font-family: 'Barlow Condensed', sans-serif;
-            font-size: 28px; font-weight: 700; color: var(--text); margin-bottom: 40px;
+            font-size: 28px; font-weight: 700; color: var(--text); margin-bottom: 8px;
         }
-        .form { display: flex; flex-direction: column; gap: 20px; }
+        .cal-sub { font-size: 14px; color: var(--text-muted); }
+
+        /* Cal.com embed container */
+        #my-cal-inline {
+            width: 100%;
+            flex: 1;
+            min-height: 680px;
+            overflow: scroll;
+        }
+
+        /* Fallback form toggle */
+        .form-toggle-wrap {
+            padding: 28px 72px;
+            border-top: 1px solid var(--border);
+            background: #0d0d0d;
+        }
+        .form-toggle-btn {
+            font-size: 13px; color: var(--text-muted);
+            cursor: pointer; background: none; border: none;
+            display: flex; align-items: center; gap: 8px;
+            transition: color .2s; font-family: 'Inter', sans-serif;
+            padding: 0;
+        }
+        .form-toggle-btn:hover { color: var(--gold); }
+        .form-toggle-btn::before { content: '+'; font-size: 16px; line-height: 1; color: var(--gold); }
+        .form-toggle-btn.open::before { content: '−'; }
+
+        /* Hidden form */
+        .form-wrap {
+            display: none;
+            padding: 0 72px 48px;
+            background: #0d0d0d;
+        }
+        .form-wrap.show { display: block; }
+        .form-wrap-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 22px; font-weight: 700; color: var(--text);
+            margin: 32px 0 24px;
+        }
+        .form { display: flex; flex-direction: column; gap: 16px; }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
         .form-g { display: flex; flex-direction: column; gap: 8px; }
         .form-g label { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); }
@@ -119,24 +162,22 @@
             background-repeat: no-repeat; background-position: right 18px center; padding-right: 40px;
         }
         .form-g select option { background: #1a1a1a; }
-        .form-g textarea { resize: vertical; min-height: 140px; }
+        .form-g textarea { resize: vertical; min-height: 120px; }
         .btn-submit {
             background: var(--gold); color: #111111;
             font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600;
-            padding: 17px 44px; border: none; cursor: pointer; letter-spacing: .05em;
+            padding: 15px 40px; border: none; cursor: pointer; letter-spacing: .05em;
             align-self: flex-start;
             transition: background .2s, transform .15s, box-shadow .2s;
         }
         .btn-submit:hover { background: #f0c55c; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,184,75,.25); }
 
-        /* Success state */
-        .form-success {
-            display: none; text-align: center; padding: 60px 40px;
-        }
+        /* Form success */
+        .form-success { display: none; padding: 40px 0; }
         .form-success.show { display: block; }
-        .success-icon { font-size: 48px; margin-bottom: 20px; }
-        .success-title { font-family: 'Barlow Condensed', sans-serif; font-size: 36px; font-weight: 700; color: var(--text); margin-bottom: 12px; }
-        .success-sub { font-size: 16px; color: var(--text-muted); }
+        .success-icon { font-size: 40px; margin-bottom: 16px; }
+        .success-title { font-family: 'Barlow Condensed', sans-serif; font-size: 32px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+        .success-sub { font-size: 15px; color: var(--text-muted); }
 
         /* FOOTER */
         .page-footer {
@@ -151,13 +192,18 @@
         @media (max-width: 900px) {
             .page { grid-template-columns: 1fr; }
             .info-panel { padding: 60px 40px; border-right: none; border-bottom: 1px solid var(--border); }
-            .form-panel { padding: 60px 40px; }
+            .cal-header { padding: 40px 40px 28px; }
+            .form-toggle-wrap { padding: 24px 40px; }
+            .form-wrap { padding: 0 40px 40px; }
             nav .container { padding: 0 24px; }
         }
         @media (max-width: 600px) {
             .form-row { grid-template-columns: 1fr; }
             .info-panel { padding: 40px 24px; }
-            .form-panel { padding: 40px 24px; }
+            .cal-header { padding: 32px 24px 24px; }
+            .form-toggle-wrap { padding: 20px 24px; }
+            .form-wrap { padding: 0 24px 32px; }
+            .page-footer { padding: 20px 24px; flex-direction: column; gap: 12px; text-align: center; }
         }
     </style>
 </head>
@@ -191,7 +237,7 @@
             </div>
             <div>
                 <div class="info-item-label">Instagram</div>
-                <div class="info-item-val"><a href="https://instagram.com/arkynenterprise" target="_blank" rel="noopener">@arkynenterprise</a></div>
+                <div class="info-item-val"><a href="https://instagram.com/24.arkyn" target="_blank" rel="noopener">@24.arkyn</a></div>
             </div>
             <div>
                 <div class="info-item-label">Standort</div>
@@ -200,57 +246,73 @@
         </div>
     </div>
 
-    <!-- RIGHT: Form -->
-    <div class="form-panel">
-        <div class="form-title">Schreib uns kurz, was du brauchst.</div>
+    <!-- RIGHT: Cal.com widget -->
+    <div class="cal-panel">
+        <div class="cal-header">
+            <div class="cal-title">Termin direkt buchen.</div>
+            <p class="cal-sub">Wähle einen freien Slot. Wir sind dabei.</p>
+        </div>
 
-        <!-- Netlify Forms: data-netlify="true" aktiviert das Formular auf Netlify -->
-        <form class="form" id="bookingForm" name="erstgespraech" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-            <input type="hidden" name="form-name" value="erstgespraech">
-            <p style="display:none;"><label>Nicht ausfüllen: <input name="bot-field"></label></p>
+        <!-- Cal.com inline embed -->
+        <div id="my-cal-inline"></div>
 
-            <div class="form-row">
-                <div class="form-g">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" placeholder="Dein Name" required>
+        <!-- Fallback: written inquiry -->
+        <div class="form-toggle-wrap">
+            <button class="form-toggle-btn" id="formToggle" type="button">
+                Lieber kurz schreiben? Anfrage per Formular
+            </button>
+        </div>
+
+        <div class="form-wrap" id="formWrap">
+            <div class="form-wrap-title">Schreib uns kurz, was du brauchst.</div>
+
+            <form class="form" id="bookingForm" name="erstgespraech" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                <input type="hidden" name="form-name" value="erstgespraech">
+                <p style="display:none;"><label>Nicht ausfüllen: <input name="bot-field"></label></p>
+
+                <div class="form-row">
+                    <div class="form-g">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Dein Name" required>
+                    </div>
+                    <div class="form-g">
+                        <label for="email">E-Mail</label>
+                        <input type="email" id="email" name="email" placeholder="deine@email.de" required>
+                    </div>
                 </div>
                 <div class="form-g">
-                    <label for="email">E-Mail</label>
-                    <input type="email" id="email" name="email" placeholder="deine@email.de" required>
+                    <label for="service">Was interessiert dich?</label>
+                    <select id="service" name="service" required>
+                        <option value="" disabled selected>Auswählen&hellip;</option>
+                        <option value="content-management">Content Management (Social Media)</option>
+                        <option value="brand-starter">Brand Starter (Logo)</option>
+                        <option value="presence">Presence (Website)</option>
+                        <option value="rebrand">Rebrand (Logo + Website)</option>
+                        <option value="sonstiges">Sonstiges</option>
+                    </select>
                 </div>
-            </div>
-            <div class="form-g">
-                <label for="service">Was interessiert dich?</label>
-                <select id="service" name="service" required>
-                    <option value="" disabled selected>Auswählen&hellip;</option>
-                    <option value="logo">Logo Design</option>
-                    <option value="website">Website-Entwicklung</option>
-                    <option value="branding">Brand Identity</option>
-                    <option value="komplett">Komplett-Paket</option>
-                    <option value="sonstiges">Sonstiges</option>
-                </select>
-            </div>
-            <div class="form-g">
-                <label for="budget">Budget (optional)</label>
-                <select id="budget" name="budget">
-                    <option value="" disabled selected>Ungefähres Budget&hellip;</option>
-                    <option value="unter-500">Unter 500 €</option>
-                    <option value="500-1500">500 € bis 1.500 €</option>
-                    <option value="1500-3000">1.500 € bis 3.000 €</option>
-                    <option value="ueber-3000">Über 3.000 €</option>
-                </select>
-            </div>
-            <div class="form-g">
-                <label for="msg">Dein Projekt</label>
-                <textarea id="msg" name="msg" placeholder="Erzähl uns kurz was du machst und was du dir vorstellst&hellip;" required></textarea>
-            </div>
-            <button type="submit" class="btn-submit">Anfrage senden</button>
-        </form>
+                <div class="form-g">
+                    <label for="budget">Monatliches Budget (optional)</label>
+                    <select id="budget" name="budget">
+                        <option value="" disabled selected>Ungefähres Budget&hellip;</option>
+                        <option value="unter-1000">Unter 1.000 €</option>
+                        <option value="1000">1.000 € (Einstiegspaket)</option>
+                        <option value="1500">1.500 € (Vollpreis)</option>
+                        <option value="ueber-1500">Über 1.500 €</option>
+                    </select>
+                </div>
+                <div class="form-g">
+                    <label for="msg">Dein Projekt</label>
+                    <textarea id="msg" name="msg" placeholder="Erzähl uns kurz was du machst und was du dir vorstellst&hellip;" required></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Anfrage senden</button>
+            </form>
 
-        <div class="form-success" id="formSuccess">
-            <div class="success-icon">&#10003;</div>
-            <div class="success-title">Nachricht erhalten.</div>
-            <p class="success-sub">Wir melden uns innerhalb von 24 Stunden bei dir.</p>
+            <div class="form-success" id="formSuccess">
+                <div class="success-icon">&#10003;</div>
+                <div class="success-title">Nachricht erhalten.</div>
+                <p class="success-sub">Wir melden uns innerhalb von 24 Stunden bei dir.</p>
+            </div>
         </div>
     </div>
 </main>
@@ -263,15 +325,69 @@
     </div>
 </footer>
 
+<!-- Cal.com inline embed -->
+<script type="text/javascript">
+(function (C, A, L) {
+    let p = function (a, ar) { a.q.push(ar); };
+    let d = C.document;
+    C.Cal = C.Cal || function () {
+        let cal = C.Cal;
+        let ar = arguments;
+        if (!cal.loaded) {
+            cal.ns = {};
+            cal.q = cal.q || [];
+            d.head.appendChild(d.createElement("script")).src = A;
+            cal.loaded = true;
+        }
+        if (ar[0] === L) {
+            const api = function () { p(api, arguments); };
+            const namespace = ar[1];
+            api.q = api.q || [];
+            if (typeof namespace === "string") {
+                cal.ns[namespace] = cal.ns[namespace] || api;
+                p(cal.ns[namespace], ar);
+                p(cal, ["-ns", namespace, api]);
+            } else {
+                p(cal, ar);
+            }
+            return api;
+        }
+        p(cal, ar);
+    };
+})(window, "https://app.cal.com/embed/embed.js", "init");
+
+Cal("init", "kennenlernen", { origin: "https://cal.com" });
+
+Cal.ns["kennenlernen"]("inline", {
+    elementOrSelector: "#my-cal-inline",
+    config: { layout: "month_view" },
+    calLink: "24arkyn/kennenlernen",
+});
+
+Cal.ns["kennenlernen"]("ui", {
+    styles: {
+        branding: { brandColor: "#E8B84B" }
+    },
+    hideEventTypeDetails: false,
+    layout: "month_view"
+});
+</script>
+
 <script>
-// Lokale Vorschau: Formular-Erfolg simulieren (auf Netlify übernimmt Netlify das Redirect)
+// Form toggle
+const formToggle = document.getElementById('formToggle');
+const formWrap = document.getElementById('formWrap');
+formToggle.addEventListener('click', () => {
+    const open = formWrap.classList.toggle('show');
+    formToggle.classList.toggle('open', open);
+});
+
+// Form submit — lokal: Success State anzeigen. Auf Netlify: nativ verarbeitet.
 document.getElementById('bookingForm').addEventListener('submit', function(e) {
-    // Auf Netlify wird das Formular nativ verarbeitet — kein JS nötig
-    // Lokal zeigen wir einen Success-State
     if (window.location.hostname === '' || window.location.hostname === '127.0.0.1') {
         e.preventDefault();
         this.style.display = 'none';
-        document.querySelector('.form-title').style.display = 'none';
+        document.querySelector('.form-wrap-title').style.display = 'none';
         document.getElementById('formSuccess').classList.add('show');
     }
 });
